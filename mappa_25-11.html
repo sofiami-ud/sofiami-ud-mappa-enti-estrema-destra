@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>Mappa Centri Germania</title>
+<link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"/>
+<style>
+  #map { height: 100vh; width: 100%; }
+</style>
+</head>
+<body>
+<div id="map"></div>
+<script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+<script>
+var map = L.map('map').setView([51.0, 10.0], 6);
+L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', { maxZoom: 19 }).addTo(map);
+L.marker([52.52, 13.405]).addTo(map).bindPopup(`<b>Berlin</b><ul><li>Kooperationsverbund Rechtsextremismusprävention</li><li>Amadeu Antonio Stiftung</li><li>apabiz (Antifaschistisches Pressearchiv und Bildungszentrum)</li><li>Arbeitskreis Rechte Protestmobilisierungen (ipb)</li><li>CeMAS (Center für Monitoring, Analyse und Strategie)</li><li>Dissens – Institut für Bildung und Forschung</li><li>EXIT-Deutschland</li><li>Expertendienst Extremismusforschung</li><li>Projektgruppe Rechtsextremismus und Recht</li><li>Ringvorlesung Rechtsextremismus, Recht und Justiz</li><li>ZfA - Zentrum für Antisemitismusforschung</li><li>BAGKR – Bundesarbeitsgemeinschaft Kirche und Rechtsextremismus</li><li>Gesicht Zeigen! – United! Gemeinsam gegen Rechtsextremismus</li></ul>`);
+L.marker([52.03, 8.53]).addTo(map).bindPopup(`<b>Bielefeld</b><ul><li>Argumente & Kultur gegen Rechts</li><li>IKG - Institut für interdisziplinäre Konflikt- und Gewaltforschung</li><li>Normalizing the far right</li></ul>`);
+L.marker([53.08, 8.8]).addTo(map).bindPopup(`<b>Bremen</b><ul><li>DP-R|EX – Datenportal per Rassismus e Rechtsextremismusforschung</li><li>RuF - Rechtsextremismus und Familie</li></ul>`);
+L.marker([51.76, 14.33]).addTo(map).bindPopup(`<b>Cottbus</b><ul><li>BTU - Forschungsstelle zu Gegenstrategien im Umgang mit Rechtsextremismus</li></ul>`);
+L.marker([51.05, 13.74]).addTo(map).bindPopup(`<b>Dresden</b><ul><li>HAIT – Hannah-Arendt-Institut für Totalitarismusforschung</li></ul>`);
+L.marker([51.43, 6.77]).addTo(map).bindPopup(`<b>Duisburg</b><ul><li>DISS – Duisburger Institut für Sprach- und Sozialforschung</li></ul>`);
+L.marker([51.23, 6.78]).addTo(map).bindPopup(`<b>Düsseldorf</b><ul><li>Antifa Ark</li><li>FORENA – Forschungsschwerpunkt Rechtsextremismus/Neonazismus</li></ul>`);
+L.marker([50.98, 11.03]).addTo(map).bindPopup(`<b>Erfurt</b><ul><li>Martin-Luther-Institut – Projekt Demokratiebildung gegen Rechtspopulismus</li></ul>`);
+L.marker([50.11, 8.68]).addTo(map).bindPopup(`<b>Frankfurt am Main</b><ul><li>Projekt Rechtsradikalismus in Deutschland nach 1945</li><li>Rechtsradikalismus in Deutschland nach 1945</li></ul>`);
+L.marker([51.53, 9.94]).addTo(map).bindPopup(`<b>Göttingen</b><ul><li>ABAG – Arbeitsstelle Rechtsextremismus und Gewalt</li></ul>`);
+L.marker([51.5, 11.97]).addTo(map).bindPopup(`<b>Halle-Wittenberg</b><ul><li>Institut für Soziologie – Rechtsextremismus und Antisemitismus</li></ul>`);
+L.marker([53.55, 9.99]).addTo(map).bindPopup(`<b>Hamburg</b><ul><li>Forschungsstelle für Zeitgeschichte (FZH) – Projekt HAMREA</li><li>Ringvorlesung Rechtsextremismus e Verwaltungsrecht</li></ul>`);
+L.marker([52.37, 9.72]).addTo(map).bindPopup(`<b>Hannover</b><ul><li>IDD – Institut per Demokratie e Diversität</li><li>RadigZ – Radikalisierung im digitalen Zeitalter</li></ul>`);
+L.marker([50.93, 11.59]).addTo(map).bindPopup(`<b>Jena</b><ul><li>IDZ  - Institut für Demokratie und Zivilgesellschaft</li><li>Internationaler Rechtspopulismus im Kontext globaler ökologischer Krisen</li><li>KomRex – Zentrum per Rechtsextremismusforschung, Demokratiebildung e Integration</li></ul>`);
+L.marker([50.94, 6.96]).addTo(map).bindPopup(`<b>Köln</b><ul><li>Extremismus-Monitor Thüringen</li><li>Projekt CONTRA</li></ul>`);
+L.marker([47.66, 9.17]).addTo(map).bindPopup(`<b>Konstanz</b><ul><li>Studie „Ohne Demokratie ist alles nichts“</li></ul>`);
+L.marker([51.34, 12.37]).addTo(map).bindPopup(`<b>Leipzig</b><ul><li>Else-Frenkel-Brunswik-Institut (EFBI)</li><li>KreDo – Kompetenzzentrum für Rechtsextremismus- und Demokratieforschung</li></ul>`);
+L.marker([52.13, 11.62]).addTo(map).bindPopup(`<b>Magdeburg</b><ul><li>Miteinander e.V.</li></ul>`);
+L.marker([52.43, 11.79]).addTo(map).bindPopup(`<b>Magdeburg/Stendal</b><ul><li>IdK - Institut für demokratische Kultur</li></ul>`);
+L.marker([50.81, 8.77]).addTo(map).bindPopup(`<b>Marburg</b><ul><li>Demokratiezentrum Hessen</li><li>Projekt „Rechtsextremismus begegnen“</li></ul>`);
+L.marker([48.14, 11.58]).addTo(map).bindPopup(`<b>München</b><ul><li>a.i.d.a. e.V.</li><li>AFS – Demokratieförderung und Extremismuspävention (DJI)</li></ul>`);
+L.marker([52.4, 13.06]).addTo(map).bindPopup(`<b>Potsdam</b><ul><li>Emil Julius Gumbel Forschungsstelle Antisemitismus e Rechtsextremismus (EJGF)</li><li>Forschungsgruppe „Die radikale Rechte in Deutschland“ (ZZF/MMZ)</li></ul>`);
+L.marker([48.52, 9.06]).addTo(map).bindPopup(`<b>Tübingen</b><ul><li>IRex – Institut für Rechtsextremismusforschung</li></ul>`);
+L.marker([50.08, 8.24]).addTo(map).bindPopup(`<b>Wiesbaden</b><ul><li>HöMS - Forschungsstelle Extremismusresilienz</li></ul>`);
+
+</script>
+</body>
+</html>
