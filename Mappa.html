@@ -1,0 +1,279 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+    <meta charset="UTF-8" />
+    <title>Mappa enti ricerca/ONG su estrema destra in Germania</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <!-- Leaflet CSS -->
+    <link
+      rel="stylesheet"
+      href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"
+      integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY="
+      crossorigin=""
+    />
+    <style>
+      html, body {
+        height: 100%;
+        margin: 0;
+        padding: 0;
+        font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      }
+      #map {
+        width: 100%;
+        height: 100vh;
+      }
+      .popup-title {
+        font-weight: bold;
+        margin-bottom: 4px;
+      }
+      .popup-list {
+        padding-left: 18px;
+        margin: 4px 0 0 0;
+      }
+    </style>
+</head>
+<body>
+<div id="map"></div>
+
+<!-- Leaflet JS -->
+<script
+  src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"
+  integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo="
+  crossorigin=""
+></script>
+
+<script>
+  // Insieme dei luoghi: un pin per città, con elenco progetti/enti
+  const locations = [
+    {
+      city: "Berlin",
+      lat: 52.52,
+      lng: 13.405,
+      projects: [
+        "Zentrum für Antisemitismusforschung (ZfA)",
+        "Expertendienst Extremismusforschung",
+        "Ringvorlesung Rechtsextremismus, Recht und Justiz",
+        "Projektgruppe Rechtsextremismus und Recht",
+        "apabiz – Antifaschistisches Pressearchiv und Bildungszentrum",
+        "Dissens – Institut für Bildung und Forschung",
+        "Amadeu Antonio Stiftung",
+        "EXIT-Deutschland",
+        "CeMAS – Center for Monitoring, Analysis and Strategy",
+        "Arbeitskreis Rechte Protestmobilisierungen (Institut für Protest- und Bewegungsforschung)"
+      ]
+    },
+    {
+      city: "Bielefeld",
+      lat: 52.03,
+      lng: 8.53,
+      projects: [
+        "Argumente & Kultur gegen Rechts",
+        "Institut für interdisziplinäre Konflikt- und Gewaltforschung (IKG)"
+      ]
+    },
+    {
+      city: "Bremen",
+      lat: 53.08,
+      lng: 8.80,
+      projects: [
+        "DP-R|EX – Datenportal für Rassismus und Rechtsextremismusforschung"
+      ]
+    },
+    {
+      city: "Cottbus",
+      lat: 51.76,
+      lng: 14.33,
+      projects: [
+        "Forschungsstelle für (sozial)pädagogische und zivilgesellschaftliche Gegenstrategien im Umgang mit Rechtsextremismus (BTU Cottbus-Senftenberg)"
+      ]
+    },
+    {
+      city: "Dresden",
+      lat: 51.05,
+      lng: 13.74,
+      projects: [
+        "HAIT – Hannah-Arendt-Institut für Totalitarismusforschung"
+      ]
+    },
+    {
+      city: "Duisburg",
+      lat: 51.43,
+      lng: 6.77,
+      projects: [
+        "DISS – Duisburger Institut für Sprach- und Sozialforschung"
+      ]
+    },
+    {
+      city: "Düsseldorf",
+      lat: 51.23,
+      lng: 6.78,
+      projects: [
+        "FORENA – Forschungsschwerpunkt Rechtsextremismus/Neonazismus",
+        "Antifa Ark"
+      ]
+    },
+    {
+      city: "Erfurt",
+      lat: 50.98,
+      lng: 11.03,
+      projects: [
+        "Martin-Luther-Institut – Projekt Demokratiebildung gegen Rechtspopulismus"
+      ]
+    },
+    {
+      city: "Frankfurt am Main",
+      lat: 50.11,
+      lng: 8.68,
+      projects: [
+        "Projekt „Rechtsradikalismus in Deutschland nach 1945“"
+      ]
+    },
+    {
+      city: "Göttingen",
+      lat: 51.53,
+      lng: 9.94,
+      projects: [
+        "ABAG – Arbeitsstelle Rechtsextremismus und Gewalt"
+      ]
+    },
+    {
+      city: "Halle (Saale)",
+      lat: 51.50,
+      lng: 11.97,
+      projects: [
+        "Institut für Soziologie – Schwerpunkt Rechtsextremismus und Antisemitismus"
+      ]
+    },
+    {
+      city: "Hamburg",
+      lat: 53.55,
+      lng: 9.99,
+      projects: [
+        "Ringvorlesung Rechtsextremismus und Verwaltungsrecht",
+        "Forschungsstelle für Zeitgeschichte (FZH) – Projekt HAMREA"
+      ]
+    },
+    {
+      city: "Hannover",
+      lat: 52.37,
+      lng: 9.72,
+      projects: [
+        "RadigZ – Radikalisierung im digitalen Zeitalter",
+        "IDD – Institut für Didaktik der Demokratie"
+      ]
+    },
+    {
+      city: "Jena",
+      lat: 50.93,
+      lng: 11.59,
+      projects: [
+        "KomRex – Zentrum für Rechtsextremismusforschung, Demokratiebildung und Integration",
+        "Projekt „Internationaler Rechtspopulismus im Kontext globaler ökologischer Krisen“",
+        "Institut für Demokratie und Zivilgesellschaft (IDZ)"
+      ]
+    },
+    {
+      city: "Köln",
+      lat: 50.94,
+      lng: 6.96,
+      projects: [
+        "Projekt CONTRA",
+        "Extremismus-Monitor Thüringen"
+      ]
+    },
+    {
+      city: "Konstanz",
+      lat: 47.66,
+      lng: 9.17,
+      projects: [
+        "Studie „Ohne Demokratie ist alles nichts“ – Proteste gegen Rechtsextremismus"
+      ]
+    },
+    {
+      city: "Leipzig",
+      lat: 51.34,
+      lng: 12.37,
+      projects: [
+        "KreDo – Kompetenzzentrum für Rechtsextremismus- und Demokratieforschung",
+        "Else-Frenkel-Brunswik-Institut (EFBI) für Demokratieforschung in Sachsen"
+      ]
+    },
+    {
+      city: "Magdeburg & Stendal",
+      lat: 52.13,
+      lng: 11.62,
+      projects: [
+        "Miteinander e.V.",
+        "Institut für demokratische Kultur (IdK), Hochschule Magdeburg-Stendal"
+      ]
+    },
+    {
+      city: "Marburg",
+      lat: 50.81,
+      lng: 8.77,
+      projects: [
+        "Demokratiezentrum Hessen",
+        "Projekt „Rechtsextremismus begegnen“"
+      ]
+    },
+    {
+      city: "München",
+      lat: 48.14,
+      lng: 11.58,
+      projects: [
+        "a.i.d.a. e.V. – Antifaschistische Informations-, Dokumentations- und Archivstelle München",
+        "AFS – Arbeits- und Forschungsstelle Demokratieförderung und Extremismuspävention (DJI)"
+      ]
+    },
+    {
+      city: "Potsdam",
+      lat: 52.40,
+      lng: 13.06,
+      projects: [
+        "Emil Julius Gumbel Forschungsstelle Antisemitismus und Rechtsextremismus (EJGF)",
+        "Forschungsgruppe „Die radikale Rechte in Deutschland“ (ZZF/MMZ)"
+      ]
+    },
+    {
+      city: "Tübingen",
+      lat: 48.52,
+      lng: 9.06,
+      projects: [
+        "IRex – Institut für Rechtsextremismusforschung"
+      ]
+    },
+    {
+      city: "Wiesbaden",
+      lat: 50.08,
+      lng: 8.24,
+      projects: [
+        "Forschungsstelle Extremismusresilienz (Hessische Hochschule für öffentliches Management und Sicherheit – HöMS)"
+      ]
+    }
+  ];
+
+  // Inizializza la mappa centrata sulla Germania
+  const map = L.map('map').setView([51.0, 10.0], 6);
+
+  // Aggiunge le tile OpenStreetMap
+  L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+    maxZoom: 19,
+    attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
+  }).addTo(map);
+
+  // Aggiungi i marker
+  locations.forEach(loc => {
+    const popupContent = `
+      <div class="popup-title">${loc.city}</div>
+      <ul class="popup-list">
+        ${loc.projects.map(p => `<li>${p}</li>`).join("")}
+      </ul>
+    `;
+
+    L.marker([loc.lat, loc.lng])
+      .addTo(map)
+      .bindPopup(popupContent);
+  });
+</script>
+</body>
+</html>
